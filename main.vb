@@ -1,8 +1,28 @@
 Module Module1
-	Dim name,ans As String
+	Dim name,lang,ans As String
 	Dim counter as UShort = 0
 	Sub Main()
-		name = inputbox("What's your name?", "player name")
+		console.writeline("Choose your language,")
+		console.writeline("Press 1 for English and 2 for Arabic")
+		lang = console.readline()
+
+		while lang<>"1" and lang<>"2"
+
+			console.writeline("PLease enter either 1 or 2 only!")
+
+			lang = console.readline()
+
+		end while
+
+		if lang=1
+
+			name = inputbox("What's your name?", "player name")
+
+		else
+
+			name = inputbox("ما اسمك؟","اسم اللاعب")
+
+		end if
 		console.writeline("Hello, {0}!", name)
 		Game()
 	End Sub
@@ -22,8 +42,21 @@ Module Module1
 				If res.tolower="y" or res=""
 					Game()
 				Else
-					'Chr(13) does the same as vbNewLine
-					MsgBox("Goodbye, " & name & "!" & chr(13) & "You answered " & counter & " question(s) correctly.")
+					if lang="2"
+						if counter > 1 and counter < 11 and counter <> 2
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لقد أجبت على " & counter & " أسئلة بشكل صحيح.")
+						elseif counter=1
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لديك إجابة صحيحة واحدة فقط!")
+						elseif counter=2
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لديك إجابتان صحيحتان فقط")
+						else
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لقد أجبت على " & counter & " سؤالاً بشكل صحيح.")
+						end if
+						'Chr(13) does the same as vbNewLine
+						'MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لقد أجبت على " & counter & " أسئلة بشكل صحيح.")
+					else
+						MsgBox("Goodbye, " & name & "!" & chr(13) & "You answered " & counter & " question(s) correctly.")
+					end if
 				End If
 			Case Else
 				Console.WriteLine("That's wrong! The correct answer is "+Cstr(num1+num2))
@@ -32,7 +65,21 @@ Module Module1
 				If res.tolower="y"
 					Game()
 				Else
-					MsgBox("Goodbye, " & name & "!" & chr(13) & "You answered " & counter & " question(s) correctly.")
+					if lang = "2"
+						if counter > 1 and counter < 11 and counter <> 2
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لقد أجبت على " & counter & " أسئلة بشكل صحيح.")
+						elseif counter=1
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لديك إجابة صحيحة واحدة فقط!")
+						elseif counter=2
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لديك إجابتان صحيحتان فقط")
+						else
+							MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لقد أجبت على " & counter & " سؤالاً بشكل صحيح.")
+						end if
+						'Chr(13) does the same as vbNewLine
+						'MsgBox("إلى اللقاء " & name & "!" & chr(13) & "لقد أجبت على " & counter & qnum)
+					else
+						MsgBox("Goodbye, " & name & "!" & chr(13) & "You answered " & counter & " question(s) correctly.")
+					end if
 				End If
 		End Select
 	End Sub
